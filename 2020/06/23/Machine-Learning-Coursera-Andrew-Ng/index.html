@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      Machine Learning (Coursera, Andrew Ng) | Kinnara&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Kinnara">
+    
+    
+
+    <meta name="description" content="Some notes I took while taking Machine Learning taught by Andrew Ng on Coursera. BTW, if you also choose to use Python to do the homework assignments rather than Octave&#x2F;Matlab, this tool made by dibge">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning (Coursera, Andrew Ng) | Kinnara&#39;s Blog">
+<meta property="og:url" content="http://illithor.github.io/2020/06/23/Machine-Learning-Coursera-Andrew-Ng/index.html">
+<meta property="og:site_name" content="Kinnara&#39;s Blog">
+<meta property="og:description" content="Some notes I took while taking Machine Learning taught by Andrew Ng on Coursera. BTW, if you also choose to use Python to do the homework assignments rather than Octave&#x2F;Matlab, this tool made by dibge">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week1_Gradient_Descent.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week2_UW_NE.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week2_Normal_Equation.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week2_GD_vs_NE.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week3_One_vs_All.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week4_Neuron_Model.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week4_Neural_Network.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week4_And.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week4_Or.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week4_XNOR.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week5_BP_Alg.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week5_BP_Alg1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week5_BP_Alg2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week5_Gradient_Checking.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week5_Zero_Init.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week6_Test_Set_Error.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week6_Errors.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week6_Bias_vs_Variance.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week6_Learning_Curves.png">
+<meta property="og:image" content="https://www.kdnuggets.com/images/precision-recall-relevant-selected.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week7_SVM.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week7_SVMDB.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week7_LMC_Outlier.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week7_Sigma.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week7_Choosing_Landmarks.png">
+<meta property="og:image" content="https://stanford.edu/~cpiech/cs221/img/kmeansViz.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week8_Elbow_Method.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week8_2D_to_1D.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week8_3D_to_2D.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week8_PCA.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week8_Reconstruction.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week9_Anomaly.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week9_Multivariate_Gaussian_Distribution.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week9_MGD1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week9_MGD2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week9_Notations.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week9_Collaborative_Filtering.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week9_Vectorization.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week6_Learning_Curves.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week10_Stochastic_Gradient_Descent.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week10_BGD_vs_SGD.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week11_Text_Detection.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week11_Character_Segmentation.png">
+<meta property="article:published_time" content="2020-06-24T03:09:11.000Z">
+<meta property="article:modified_time" content="2023-03-04T02:38:32.247Z">
+<meta property="article:author" content="Kinnara">
+<meta property="article:tag" content="MOOC">
+<meta property="article:tag" content="Data Science">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week1_Gradient_Descent.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    
+<link rel="stylesheet" href="/css/uno.css">
+
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+    
+<link rel="stylesheet" href="/css/archive.css">
+
+    
+<link rel="stylesheet" href="/css/china-social-icon.css">
+
+
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<body>
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for Kinnara&#39;s Blog"><img src="/avatar.png" width="80" alt="Kinnara&#39;s Blog logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Kinnara&#39;s Blog</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          Fasting, waiting, thinking: three noble and undefeatable feats.
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">Home</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">About</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">Archive</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">Machine Learning (Coursera, Andrew Ng)</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2020-06-23" class="post-meta__date date">2020-06-23</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; Tags:
+            <font class="tags">
+              <a class="tags-link" href="/tags/Data-Science/" rel="tag">Data Science</a>, <a class="tags-link" href="/tags/MOOC/" rel="tag">MOOC</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>Some notes I took while taking <a href="https://www.coursera.org/learn/machine-learning/" target="_blank" rel="noopener">Machine Learning</a> taught by Andrew Ng on Coursera.</p>
+<p>BTW, if you also choose to use Python to do the homework assignments rather than Octave/Matlab, <a href="https://github.com/dibgerge/ml-coursera-python-assignments" target="_blank" rel="noopener">this tool</a> made by dibgerge will save your life. You can now get the credit while coding in Python!!!</p>
+<h2 id="week-1---introduction-linear-regression-with-one-variable-linear-algebra-review">Week 1 - Introduction, Linear Regression with One Variable, Linear Algebra Review</h2>
+<h3 id="definitions-of-machine-learning">Definitions of Machine Learning</h3>
+<p>Arthur Samuel (1959):<br />
+ML is the field of study that gives computers the ability to learn without being explicitly learned.</p>
+<p>Tom Mitchell (1998):<br />
+A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.</p>
+<h3 id="types-of-machine-learning-algorithms">Types of Machine Learning Algorithms</h3>
+<ul>
+<li>Supervised learning:
+<ul>
+<li>teach computers</li>
+<li>"right answer" is given</li>
+<li>types of problems: regression (continued valued output e.g. housing price), classification (discrete-valued output e.g. malignant or benign tumor)</li>
+</ul></li>
+<li>Unsupervised learning:
+<ul>
+<li>let the computers learn by themselves</li>
+<li>no "right answer" is given</li>
+<li>a similar example as the tumor example: same points, but instead of blue circles and red crosses, they are not labeled at all</li>
+<li>types of problems: clustering (e.g. cluster the two groups of points in the given dataset)</li>
+</ul></li>
+</ul>
+<h3 id="model-representation">Model Representation</h3>
+<p>We feed the training set (a group of <span class="math inline">\((x,y)\)</span>'s) to the learning algorithm, and it will produce a hypothesis h ("hypothesis" is the term in ML for a function that does the following mapping). <span class="math inline">\(h\)</span> will map from <span class="math inline">\(x\)</span> to <span class="math inline">\(y\)</span>, where <span class="math inline">\(x\)</span> is the known and the <span class="math inline">\(y\)</span> is the result we want (e.g. <span class="math inline">\(x\)</span> is the area of the house and <span class="math inline">\(y\)</span> is the price it worth)</p>
+<p>e.g. (univariate) linear regression: <span class="math inline">\(h(x) = \theta_0 + \theta_1 x\)</span></p>
+<p>Our goal for linear regression: minimize the cost function (aka square error function) <span class="math display">\[
+J(\theta_0, \theta_1) = \frac{1}{2m}\sum_{i=1}^{m} (h(x_i) - y_i)^2
+\]</span> where <span class="math inline">\(m\)</span> is the size of the training set.</p>
+<p><span class="math inline">\(h\)</span> is a function of <span class="math inline">\(x\)</span>, and <span class="math inline">\(J\)</span> is a function of <span class="math inline">\(\theta_0\)</span> and <span class="math inline">\(\theta_1\)</span>.</p>
+<h3 id="gradient-descent">Gradient Descent</h3>
+<p><span class="math display">\[
+\min_{\theta_0, \theta_1, \ldots, \theta_n} J(\theta_0, \theta_1, \ldots, \theta_n)
+\]</span></p>
+<p>Outline: - Start with some <span class="math inline">\(\theta_i\)</span>'s - Keep changing their value to reduce the value of the cost function - Imagine: taking one little step from the current point to get as low as possible, and start over again from the new point we stand at - <span class="math inline">\(\theta_0 := \theta_0 - \alpha \frac{\partial}{\partial \theta_0}J(\theta_0, \theta_1)\)</span> and <span class="math inline">\(\theta_1 := \theta_1 - \alpha \frac{\partial}{\partial \theta_1}J(\theta_0, \theta_1)\)</span>, where <span class="math inline">\(\alpha\)</span> is the learning rate (the length of each step) - The updates to each <span class="math inline">\(\theta_j\)</span> should be simultaneous - As we approach local minimum, gradient descent will automatically take smaller steps, since the derivatives are closer to 0. And when we finally reach the local minimum, the derivative term will be 0, so we won't move anymore</p>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week1_Gradient_Descent.png" alt="Gradient Descent" /><figcaption>Gradient Descent</figcaption>
+</figure>
+<h2 id="week-2---linear-regression-with-multiple-variables">Week 2 - Linear Regression with Multiple Variables</h2>
+<h3 id="multivariate-linear-regression">Multivariate Linear Regression</h3>
+<p>Gradient Descent for multiply variables: <span class="math display">\[
+\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j}J(\theta)
+\]</span> i.e. <span class="math display">\[
+\theta_j := \theta_j - \alpha \frac{1}{m}\sum_{i=1}^{m} (h(x^{(i)}) - y^{(i)})x_j^{(i)}
+\]</span> for <span class="math inline">\(j \in \{0, 1, \ldots, n\}\)</span>.</p>
+<h3 id="feature-scaling">Feature Scaling</h3>
+<p>Ideas:</p>
+<ol type="1">
+<li>Make sure the features are on a similar scale</li>
+</ol>
+<ul>
+<li>e.g. if the contour is of a skewed elliptical shape, gradient descent may take a lot of back and forth (zigzag) steps before reaching the global minimum. However, if we scale the variables, the contour will look much less skewed (like circles in our example), and gradient descent will take less time.</li>
+</ul>
+<ol start="2" type="1">
+<li>Get every feature into <strong>approximately</strong> a <span class="math inline">\(-1 \leq x_i \leq 1\)</span> range</li>
+</ol>
+<h3 id="mean-normalization">Mean Normalization</h3>
+<p>Replace <span class="math inline">\(x_i\)</span> with <span class="math inline">\(x_i - \mu_i\)</span> to make features have <strong>approximately</strong> 0 mean (doesn't apply to <span class="math inline">\(x_0 = 1\)</span>)</p>
+<p>In a word, replace <span class="math inline">\(x_i\)</span> with <span class="math inline">\(x_i = \frac{x_i - \mu_i}{s_i}\)</span>, where <span class="math inline">\(\mu_i\)</span> is the mean of the feature and <span class="math inline">\(s_i\)</span> is the range (max - min) of the feature</p>
+<h3 id="make-sure-gradient-descent-is-working">Make sure gradient descent is working:</h3>
+<p>If <span class="math inline">\(J(\theta)\)</span> increases after each iteration, we may consider choosing a smaller learning rate <span class="math inline">\(\alpha\)</span>. - For sufficiently small <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(J(\theta)\)</span> should decrease on every iteration. - But if <span class="math inline">\(\alpha\)</span> is too small, gradient descent can be slow to converge.</p>
+<h3 id="polynomial-regression">Polynomial Regression</h3>
+<p>Feature scaling is very important!</p>
+<p>e.g. size ranges from 1 to 1000, then the square of it will range from 1 to 1,000,000 and so on.</p>
+<h3 id="normal-equation">Normal Equation</h3>
+<p>Instead of using gradient descent and run many iterations, we can also calculate the partial derivations of each <span class="math inline">\(\theta_i\)</span> and let the derivations to be zero. The values of the <span class="math inline">\(\theta_i\)</span>'s when the derivations are zero will be the values we want.</p>
+<h4 id="how-to-find-the-values-of-the-theta_is">How to find the values of the <span class="math inline">\(\theta_i\)</span>'s?</h4>
+<p>(Andrew Ng doesn't cover this part, so I copied from Linear Algebra 2 Course Notes for MATH 235 by Dan Wolczuk from UWaterloo)</p>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week2_UW_NE.png" alt="Week2_UW_NE" /><figcaption>Week2_UW_NE</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week2_Normal_Equation.png" alt="Normal Equation" /><figcaption>Normal Equation</figcaption>
+</figure>
+<p>==If we're using the normal equation method, then feature scaling isn't necessary.==</p>
+<h4 id="when-to-use-what">When to use what?</h4>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week2_GD_vs_NE.png" alt="GD vs NE" /><figcaption>GD vs NE</figcaption>
+</figure>
+<p>Normal equation works well when <span class="math inline">\(n\)</span> is small (say, &lt; 1000). However, for some more complicated algorithms, normal equation doesn't work -- we still need gradient descent for those algorithms.</p>
+<p>But for linear regression, normal equation is a great alternative. Sometimes it can be much faster than gradient descent.</p>
+<h3 id="normal-equation-noninvertibility">Normal Equation Noninvertibility</h3>
+<p>The reasons why <span class="math inline">\(X^TX\)</span> can be non-invertible could be: - redundant features (linearly dependent, e.g. one feature is the size and another feature is size * 2) - too many features (e.g. m &lt;= n)</p>
+<h2 id="week-3---logistic-regression-regularization">Week 3 - Logistic Regression, Regularization</h2>
+<h3 id="classification-problems">Classification Problems</h3>
+<p>Applying linear regression to a classification problem often isn't a great idea.</p>
+<p>Some reasons (we're talking about binary classification problems): - recall the example when we add a new point to the RHS and the slope of the line changed a bit, hence changed the prediction for some points. - linear regression can produce values &gt;1 or &lt;0, while we know the results can only be 0 or 1</p>
+<p>Therefore, let's take a look at logistic regression where <span class="math inline">\(0 \leq h(x) \leq 1\)</span>.</p>
+<p>Sigmoid function / logistic function: <span class="math inline">\(h(x) = g(\theta^Tx)\)</span> where <span class="math inline">\(g(z) = \frac{1}{1+e^{-z}}\)</span>. That is, <span class="math inline">\(h(x) = \frac{1}{1+e^{-\theta^Tx}}\)</span>.</p>
+<p>Note that for the sigmoid function, when z &lt; 0, g(z) is close to 0, and when z &gt;= 0, g(z) is close to 1. So according to our definition, if <span class="math inline">\(\theta^Tx &lt; 0\)</span>, we say we predict a negative case, while if <span class="math inline">\(\theta^Tx \geq 0\)</span>, we predict a positive case.</p>
+<p>The boundary we have between the two groups is called the <strong>decision boundary</strong>.</p>
+<h3 id="cost-function-for-logistic-regression">Cost Function for Logistic Regression</h3>
+<p>Firstly, why can't we use the same cost function as in linear regression?</p>
+<p>That's because if we use the same <span class="math display">\[
+J(\theta) = \frac{1}{2m}\sum_{i=1}^{m} (h(x_i) - y_i)^2
+\]</span> as in linear regression, the cost function is non-convex (may not end up at a global minimum). We want a convex bowl-shape cost function so that we can end up at the global minimum.</p>
+<p>So instead of using the same cost function as in linear regression, we should come up with a new cost function that is convex for logistic regression.</p>
+<p>Logistic regression cost function: <span class="math display">\[
+\text{Cost}(h_\theta(x), y) = 
+\begin{cases}
+  -\log(h_\theta(x)) \text{ if } y = 1 \\
+  -\log(1 - h_\theta(x)) \text{ if } y = 0\\
+\end{cases}
+\]</span></p>
+<p>Write in one line: <span class="math display">\[
+\text{Cost}(h_\theta(x), y) = -y\log(h_\theta(x)) - (1-y)\log(1-h_\theta(x))
+\]</span></p>
+<p>So <span class="math display">\[
+J(\theta) = \frac{1}{m}\sum_{i=1}^{m} \text{Cost}(h_\theta(x^{(i)}), y^{(i)}) = -\frac{1}{m}\sum_{i=1}^{m}y^{(i)}\log(h_\theta(x^{(i)})) + (1-y^{(i)})\log(1-h_\theta(x^{(i)}))
+\]</span></p>
+<p>Again, by taking derivative: <span class="math display">\[
+\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j}J(\theta)
+\]</span> That is, <span class="math display">\[
+\theta_j := \theta_j - \alpha \frac{1}{m}\sum_{i=1}^{m} (h(x^{(i)}) - y^{(i)})x_j^{(i)}
+\]</span></p>
+<p>This is exactly the same as what we got for linear regression! That because for linear regression, <span class="math inline">\(h(x) = \theta^Tx\)</span> while for logistic regression, <span class="math inline">\(h(x) = \frac{1}{1+e^{-\theta^Tx}}\)</span></p>
+<p>We might use a more advanced optimization algorithm (e.g. conjugate gradient/BFGS/L-BFGS etc) because they can be faster and don't require a learning rate.</p>
+<h3 id="multiclass-classification">Multiclass classification</h3>
+<p>One-vs-all (one-vs-rest): train a logistic regression classifier <span class="math inline">\(h_\theta^{(i)}(x)\)</span> for each class <span class="math inline">\(i\)</span> to predict the probability that <span class="math inline">\(y=i\)</span></p>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week3_One_vs_All.png" alt="One-vs-All" /><figcaption>One-vs-All</figcaption>
+</figure>
+<h3 id="the-problem-of-overfitting">The Problem of Overfitting</h3>
+<ul>
+<li>Underfitting / High bias</li>
+<li>"Just right"</li>
+<li>Overfitting / High variance</li>
+</ul>
+<p>The problem of overfitting: if we have too many features, then the model may fit the training set very well. So, the cost function may actually be very close to zero or maybe even zero exactly, but we may then end up with a very wiggly curve (try too hard to fit the training set), so that it may fail to generalize to new examples.</p>
+<h3 id="how-to-address-overfitting">How to address overfitting?</h3>
+<ul>
+<li>Reduce the number of features</li>
+<li>Regularization</li>
+</ul>
+<h3 id="regularization">Regularization</h3>
+<p>Intuition:</p>
+<p>Suppose an overfitting expression is <span class="math inline">\(\theta_0 + \theta_1 x + \theta_2 x^2+ \theta_3 x^3 + \theta_4 x^4\)</span>. We know it's a overfitting, and we want <span class="math inline">\(\theta_3\)</span> and <span class="math inline">\(\theta_4\)</span> to be small - we penalize on <span class="math inline">\(\theta_3\)</span> and <span class="math inline">\(\theta_4\)</span>: Make the cost function to be <span class="math inline">\(\frac{1}{2m}\sum_{i=1}^{m} (h(x^{(i)}) - y^{(i)})^2 + 1000\theta_3^2 + 1000\theta_4^2\)</span> and try to minimize this.</p>
+<p>This will make <span class="math inline">\(\theta_3\)</span> and <span class="math inline">\(\theta_4\)</span> as close to 0 as possible.</p>
+<p>However, if there are many parameters, we don't which are the ones that should be regularized. In this case, we regularize all the parameters: cost function <span class="math display">\[
+J(\theta) = \frac{1}{2m}[\sum_{i=1}^{m} (h(x^{(i)}) - y^{(i)})^2 + \lambda\sum_{j=1}^{n} \theta_j^2]
+\]</span> where the <span class="math inline">\(\lambda\)</span> is the regularization parameter. It determines how much the costs of our theta parameters are inflated. Also note that for the lambda part, we don't regularize <span class="math inline">\(\theta_0\)</span>.</p>
+<h3 id="gradient-descent-when-regularized">Gradient Descent when Regularized</h3>
+<p>So for gradient descent, the <strong>unregularized</strong> gradient is <span class="math display">\[
+\frac{\partial J}{\partial \theta_j} = \frac{1}{m}\sum_{i=1}^{m} (h(x^{(i)}) - y^{(i)})x_j^{(i)}
+\]</span></p>
+<p>The <strong>regularized</strong> gradient is <span class="math display">\[
+\frac{\partial J}{\partial \theta_i} =
+\begin{cases}
+   \frac{1}{m}\sum_{i=1}^{m} (h(x^{(i)}) - y^{(i)})x_0^{(i)} \text{ if } j = 0 \\
+   \frac{1}{m}\sum_{i=1}^{m} (h(x^{(i)}) - y^{(i)})x_j^{(i)} + \frac{\lambda}{m}\theta_j \text{ if } j &gt; 0\\
+\end{cases}
+\]</span></p>
+<p>We do the simultaneous update: <span class="math display">\[
+\theta_0 := \theta_0 - \alpha \frac{1}{m}\sum_{i=1}^{m} (h(x^{(i)}) - y^{(i)})x_0^{(i)} \\
+\theta_j := \theta_j - \alpha [\frac{1}{m}\sum_{i=1}^{m} (h(x^{(i)}) - y^{(i)})x_j^{(i)} + \frac{\lambda}{m}\theta_j] \\
+=\theta_j(1 - \alpha\frac{\lambda}{m}) - \theta_j - \alpha \frac{1}{m}\sum_{i=1}^{m} (h(x^{(i)}) - y^{(i)})x_j^{(i)},\;\forall j = 1, 2, \ldots, n
+\]</span></p>
+<h3 id="normal-equation-when-regularized">Normal Equation when Regularized</h3>
+<p><span class="math display">\[
+\theta = (X^TX + \lambda 
+\begin{bmatrix}
+0 &amp; 0 &amp; 0 &amp; \ldots &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; \ldots &amp; 0\\
+0 &amp; 0 &amp; 1 &amp; \ldots &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; \ldots &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; \ldots &amp; 1\end{bmatrix})^{-1} X^Ty
+\]</span> The matrix is a <span class="math inline">\((n+1) * (n+1)\)</span> matrix, and all diagonal entries except for the top left corner is 1.</p>
+<h2 id="week-4---neural-networks-representation">Week 4 - Neural Networks: Representation</h2>
+<h3 id="non-linear-hypotheses">Non-linear Hypotheses</h3>
+<p>Why do we need yet another learning algorithm? We already have linear regression and we have logistic regression, so why do we need neural networks?</p>
+<p>That's because when the number of features is large, the computation will be very hard.</p>
+<p>For example, if there are <span class="math inline">\(n\)</span> features <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span>, and we want to include all the quadratic terms, there would be terms like <span class="math inline">\(x_1^2, x_1x_2, x_1x_3, \ldots, x_2^2, x_2x_3, \ldots\)</span>. That's about <span class="math inline">\(n^2/2\)</span> terms in total.</p>
+<p>When <span class="math inline">\(n\)</span> is large, we'll reach millions of terms.</p>
+<h3 id="model-representation-1">Model Representation</h3>
+<h4 id="neuron-in-the-brain">Neuron in the brain:</h4>
+<p>Each Neuron has a dendrite (input wire) and an axon (output wire).<br />
+The process is: get the input from the input wire, do something, pass the result to the output wire.</p>
+<p><img alt="Neuron Model" src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week4_Neuron_Model.png" width="500"></p>
+<h4 id="neural-network">Neural Network:</h4>
+<p>An input layer, an output layer, and hidden layer(s).</p>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week4_Neural_Network.png" alt="Neural-Network" /><figcaption>Neural-Network</figcaption>
+</figure>
+<h4 id="why-hidden-layers">Why Hidden Layers?</h4>
+<p>With the help of the hidden layer, we can learn some pretty interesting and complex features and therefore we can end up with a better hypothesis than if we were constrained to use the raw features <span class="math inline">\(x_1, x_2, x_3\)</span> or if you will constrain to say choose the polynomial terms of <span class="math inline">\(x_1, x_2, x_3\)</span>. But instead, this algorithm has the flexibility to try to learn whatever features at once, using these <span class="math inline">\(a_1, a_2, a_3\)</span> in order to feed into this last unit that's essentially a logistic regression here.</p>
+<p>The neural network can use this hidden there to compute more complex features to feed into this final output layer and it can learn more complex hypotheses.</p>
+<h3 id="applications">Applications</h3>
+<p>And and Or can be computed using two layers: <img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week4_And.png" alt="And" /> <img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week4_Or.png" alt="Or" /></p>
+<p>If we group up some neural networks we have, we can implement XNOR: <img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week4_XNOR.png" alt="XNOR" /></p>
+<p>That's why neural networks can compute pretty complicated functions. When we have multiple layers, we have a relatively simple function of the inputs of the second layer. But the third layer can build on that to complete even more complex functions, and then the layer after that can compute even more complex functions.</p>
+<h2 id="multiclass-classification-1">Multiclass Classification</h2>
+<p>Let's say that we have a computer vision example, where we're trying to recognize four categories of objects, and given an image we want to decide if it is a pedestrian, a car, a motorcycle, or a truck.</p>
+<p>If that's the case, what we would do is we would build a neural network with four output units so that our neural network now outputs a vector of four numbers. Then (ideally) <span class="math inline">\([1, 0, 0, 0]\)</span> will represent a pedestrian, <span class="math inline">\([0, 1, 0, 0]\)</span> will represent a car, etc.</p>
+<h2 id="week-5---neural-networks-learning">Week 5 - Neural Networks: Learning</h2>
+<h3 id="cost-function">Cost Function</h3>
+<p>Recall that the regularized cost function of logistic regression is <span class="math display">\[
+J(\theta) = -\frac{1}{m}\sum_{i=1}^{m}y^{(i)}\log(h_\theta(x^{(i)})) + (1-y^{(i)})\log(1-h_\theta(x^{(i)})) + \frac{\lambda}{2m}\sum_{j=1}^{m}\theta_j^2
+\]</span> Note that the second summation is from 1 to n, as we don't regularize the biased term <span class="math inline">\(\theta_0\)</span>.</p>
+<p>The cost function of the neural network is: <span class="math display">\[
+h_\Theta(x) \in R^K \;\;\; (h_\Theta(x))_i = i^{th} \text{output} \\
+J(\Theta) = -\frac{1}{m}\sum_{i=1}^{m}\sum_{k=1}^{K}y_k^{(i)}\log(h_\Theta(x^{(i)}))_k + (1-y_k^{(i)})\log(1-(h_\Theta(x^{(i)}))_k) + \frac{\lambda}{2m}\sum_{l=1}^{L-1}\sum_{i=1}^{s_l}\sum_{j=1}^{s_l+1}(\Theta_{ji}^{(l)})^2
+\]</span> For the regularization term:<br />
+The number of columns in our current theta matrix is equal to the number of nodes in our current layer (including the bias unit). The number of rows in our current theta matrix is equal to the number of nodes in the next layer (excluding the bias unit). As before with logistic regression, we square every term.</p>
+<h3 id="backpropagation-algorithm">Backpropagation Algorithm</h3>
+<ul>
+<li>Goal: find the <span class="math inline">\(\Theta\)</span> that minimizes <span class="math inline">\(J(\Theta)\)</span>.<br />
+i.e. find <span class="math inline">\(\min_{\Theta} J(\Theta)\)</span></li>
+<li>Intuition: <span class="math inline">\(\delta_j^{(l)}\)</span> is the "error" of node <span class="math inline">\(j\)</span> in layer <span class="math inline">\(l\)</span></li>
+</ul>
+<p>e.g. if <span class="math inline">\(l = 4\)</span> (we have 4 layers), then <span class="math display">\[
+\delta^{(4)} = a^{(4)} - y \\
+\delta^{(3)} = (\Theta^{(3)})^T\delta^{(4)} .*g&#39;(z^{(3)}) \;\;\;\text{ where .* is element-wise product}\\
+\delta^{(2)} = (\Theta^{(2)})^T\delta^{(3)} .*g&#39;(z^{(2)}) \\
+\text{No } \delta^{(1)} \text{ since that is the feature we have and it has no errors}
+\]</span> Note that when we take the derivative of <span class="math inline">\(g\)</span>, we can get <span class="math inline">\(g&#39;(z^{(3)}) = a^{(3)} .* (1 - a^{(3)})\)</span></p>
+<p>As for the partial derivative: if we ignore the regularization, then <span class="math inline">\(\frac{\partial{}}{\partial{\Theta_{ij}^{(l)}}}J(\Theta) = a_j^{(l)}d_i^{(l+1)}\)</span></p>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week5_BP_Alg.png" alt="BP Alg" /><figcaption>BP Alg</figcaption>
+</figure>
+<p>Steps in detail: <img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week5_BP_Alg1.png" alt="BP Alg1" /> <img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week5_BP_Alg2.png" alt="BP Alg2" /></p>
+<h3 id="implementation-note-unrolling-parameters-matrix---vector">Implementation Note: Unrolling Parameters: Matrix -&gt; Vector</h3>
+<p>The advantages of the matrix representation: - more convenient when doing forward propagation and backpropagation - easier for vectorized implementations</p>
+<p>The advantage of the vector representation: - when using the advanced optimization algorithms, those algorithms tend to assume that we have all of our parameters unrolled into a big long vector</p>
+<h3 id="gradient-checking">Gradient Checking</h3>
+<p><span class="math display">\[
+\frac{\partial{}}{\partial{\Theta}} J(\Theta) \approx \frac{J(\Theta + \epsilon) - J(\Theta - \epsilon)}{2\epsilon}
+\]</span> where <span class="math inline">\(\epsilon\)</span> is a very small number.</p>
+<p>For a parameter vector <span class="math inline">\(\theta\)</span>, the gradient checking applies as follows: <img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week5_Gradient_Checking.png" alt="Gradient Checking" /></p>
+<p>How gradient checking works:</p>
+<ol type="1">
+<li>First, run backpropagation to get <code>DVec</code></li>
+<li>Then, run the numerical gradient algorithm as described above to get <code>gradApprox</code></li>
+<li>Check that <code>gradApprox</code> is approximately the same as <code>DVec</code>.</li>
+<li>Turn off the numerical gradient algorithm, since it is very slow (compared to backpropagation).</li>
+<li>Accept <code>DVec</code> as the result of backpropagation</li>
+</ol>
+<h3 id="random-initialization">Random Initialization</h3>
+<p>What should we set the init values of <span class="math inline">\(\Theta\)</span> to be? First, consider all zero (<span class="math inline">\(\Theta_{ij}^{(l)} = 0 \;\; \forall i,j, l\)</span>). The problem of this is that for a certain <span class="math inline">\(i\)</span> in layer <span class="math inline">\(l\)</span>, <span class="math inline">\(\Theta_{ij}^{(l)}\)</span> will be the same for all <span class="math inline">\(j\)</span> (see the figure below: the blue arrows will have the same weight, the red arrows will have the same weight, and the green arrows will have the same weight). <img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week5_Zero_Init.png" alt="Zero Init" /></p>
+<p>Generally speaking, the same will also happen no matter we set <span class="math inline">\(\Theta_{ij}^{(l)} \;\; \forall i,j, l\)</span> to be 0 or some other value -- as long as all elements have the same value, it fails to break the symmetry.</p>
+<p>The correct way to initialize the values is to set each elements <span class="math inline">\(\Theta_{ij}^{(l)} \;\; \forall i,j, l\)</span> to be a random value in <span class="math inline">\([-\epsilon, \epsilon]\)</span></p>
+<h3 id="wrap-up">Wrap Up</h3>
+<p>Setting up a neural network: - Number of input units: the dimension of features <span class="math inline">\(x^{(i)}\)</span> - Number of output units: number of classes - Reasonable default: 1 hidden layer, or if &gt; 1 hidden layer, then each hidden layer has the same number of hidden units</p>
+<p>Training a neural network:</p>
+<ol type="1">
+<li>Randomly initialize weights</li>
+<li>Implement forward propagation to get <span class="math inline">\(h_\Theta(x^{(i)})\)</span> for any <span class="math inline">\(x^{(i)}\)</span>.</li>
+<li>Implement code to comput cost function<span class="math inline">\(J(\Theta)\)</span></li>
+<li>Implement back parpagation to compute partial derivatives <span class="math inline">\(\frac{\partial}{\partial\Theta_{jk}^{(l)}}J(\Theta)\)</span></li>
+<li>Use gradient checking to compare <span class="math inline">\(\frac{\partial}{\partial\Theta_{jk}^{(l)}}J(\Theta)\)</span> computed using backpropagation v.s. using numerical estimmate of gradient of <span class="math inline">\(J(\Theta)\)</span>.<br />
+Then disable gradient checking, since it's very slow.</li>
+<li>Use gradient descent or advanced optimization method with backpropagation to try to minimize <span class="math inline">\(J(\Theta)\)</span> as a function of parameters <span class="math inline">\(\Theta\)</span></li>
+</ol>
+<p>The cost function for the neural network is not convex, i.e. we may end up in a local optimum rather than a global optimum. But in most cases, this is not a big deal, because the algorithm will usually find a good enough local optimum.</p>
+<h2 id="week-6---advice-for-applying-machine-learning-machine-learning-system-design">Week 6 - Advice for Applying Machine Learning, Machine Learning System Design</h2>
+<h3 id="debugging-a-learning-algorithm">Debugging a Learning Algorithm</h3>
+<p>If there are errors in the prediction, what should we do? - Get more training examples - Try smaller set of features - Try getting additional features - Try adding polynomial features (<span class="math inline">\(x_1^2, x_2^2, x_1x_2\)</span> etc) - Try decreasing <span class="math inline">\(\lambda\)</span> - Try increasing <span class="math inline">\(\lambda\)</span></p>
+<h3 id="the-test-set-error">The Test Set Error</h3>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week6_Test_Set_Error.png" alt="Test Set Error" /><figcaption>Test Set Error</figcaption>
+</figure>
+<p>Previously, we divide our set into 70% training set and 30% testing set.</p>
+<p>But this has a problem -- when we try to find the degree of the polynomial that fits the data, we try from d = 1 to, say, d = 10. We then calculate <span class="math inline">\(J_{test}(\Theta)\)</span> for each different degree, and find the degree d that minimizes the cost.</p>
+<p>This is usually an overly optimistic estimate because we choose the model for the test set based on the same test set's performance.</p>
+<p>In order to address this problem, let's divide the data in this way: 60% training set, 20% cross-validation (CV) set, and 20% test set.</p>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week6_Errors.png" alt="Errors" /><figcaption>Errors</figcaption>
+</figure>
+<p>So back to the problem to find the best degree d: instead of using the test set to select the degree, we use the cross-validation set to find the d and estimate the error on the test set.</p>
+<h3 id="bias-vs-variance">Bias vs Variance</h3>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week6_Bias_vs_Variance.png" alt="Bias vs Variance" /><figcaption>Bias vs Variance</figcaption>
+</figure>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>x</th>
+<th>High bias (underfit)</th>
+<th>High variance (overfit)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(J_{train}(\Theta)\)</span></td>
+<td>high</td>
+<td>low</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(J_{cv}(\Theta)\)</span></td>
+<td>high (approx. the same as <span class="math inline">\(J_{train}(\Theta)\)</span>)</td>
+<td>high (<span class="math inline">\(J_{cv}(\Theta) &gt;&gt; J_{train}(\Theta)\)</span>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="choosing-the-regularization-parameter-lambda">Choosing the Regularization Parameter <span class="math inline">\(\lambda\)</span></h3>
+<p>Similarly, when we choose the regularization parameter <span class="math inline">\(\lambda\)</span> for a fixed-degreed model, we can also use the training/cv/test method as above. We would try <span class="math inline">\(\lambda = 0, 0.01, 0.02, 0.04, 0.08, \ldots, 10.24\)</span> and find the <span class="math inline">\(\Theta\)</span> that minimized <span class="math inline">\(J_{cv}(\Theta)\)</span> and use that model on our test set.</p>
+<h3 id="learning-curves">Learning Curves</h3>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week6_Learning_Curves.png" alt="Learning Curves" /><figcaption>Learning Curves</figcaption>
+</figure>
+<h3 id="deciding-what-to-do">Deciding What to Do</h3>
+<p>Back to the examples we discussed at the beginning of this week: - Get more training examples --&gt; fixes high variance - Try smaller set of features --&gt; fixes high variance - Try getting additional features --&gt; fixes high bias - Try adding polynomial features (<span class="math inline">\(x_1^2, x_2^2, x_1x_2\)</span> etc) --&gt; fixes high bias - Try decreasing <span class="math inline">\(\lambda\)</span> --&gt; fixes high bias - Try increasing <span class="math inline">\(\lambda\)</span> --&gt; fixes high variance</p>
+<h3 id="neural-network-and-underfittingoverfitting">Neural Network and Underfitting/Overfitting</h3>
+<ul>
+<li>Small neural networks = fewer parameters = more prone to underfitting</li>
+<li>Large neural networks = more parameters = more prone to overfitting</li>
+<li>The number of hidden layers: using a single hidden layer is a reasonable default, but we can also try to find a training cross-validation and try training neural networks with one hidden layer or more hidden layers, and see which of those neural networks performs best on the cross-validation sets.</li>
+</ul>
+<h3 id="machine-learning-system-design">Machine Learning System Design</h3>
+<p>Instead of using gut feeling and starting with a carefully-designed algorithm, try to start with something quick and dirty and test it on cross-validation data quickly.</p>
+<p>Plot learning curves and figure out how to improve our algorithm.</p>
+<p>It's usually a better practice to let the error tell us where to spend time for improvement, rather than spending much time on design.</p>
+<p>Once the errors are found, manually go through the errors and find specifically a way to improve. (e.g. when building a quick and dirty algorithm for email spam classifier, we found that many "password-stealing" emails are not classified as spams. In this case, we can focus on how to improve the performance of our algorithm on detecting this kind of emails)</p>
+<h3 id="skewed-classes">Skewed Classes</h3>
+<p>We have a lot more examples from one class than from the other class. (e.g. 99.5% cancers are benign, 0.5% cancers are malignant)</p>
+<p>If we have very skewed classes, it becomes much harder to use just classification accuracy, because we can get very high classification accuracies or very low errors, and it's not always clear if doing so is really improving the quality of your classifier. (e.g. predicting all cancers to be benign gives us 0.5% error, but it doesn't seem like a good classifier)</p>
+<h3 id="precision-and-recall">Precision and Recall</h3>
+<figure>
+<img src="https://www.kdnuggets.com/images/precision-recall-relevant-selected.jpg" alt="Precision and Recall" /><figcaption>Precision and Recall</figcaption>
+</figure>
+<p>Precision = # of true positives / # of all predicted positives<br />
+Recall = # of true positives / # of all actual positives</p>
+<p>High precision &amp; high recall means that the algorithm is doing well even on skewed classes.</p>
+<p>Cancer example: Logistic regression: <span class="math display">\[
+\text{Predict} = 
+\begin{cases}
+  1 \text{ if } y \geq a \\
+  0 \text{ if } y &lt; a\\
+\end{cases}
+\]</span> - Suppose we want to predict y=1 (cancer) only when very confident: increase <span class="math inline">\(a\)</span> - high precision, low recall - Suppose we want to avoid missing too many cases of cancer: decrease <span class="math inline">\(a\)</span> - high recall, low precision.</p>
+<p>Say we have multiple algorithms that have different precisions and recalls. Which one is the best of them?</p>
+<p>Let's use "F score": <span class="math inline">\(\frac{2PR}{P+R}\)</span>.</p>
+<p>High F score = better algorithm.</p>
+<p>F score equals 0 if P=0 and R=0. F score equals 1 if P=1 and R=1.</p>
+<h2 id="week-7---support-vector-machines">Week 7 - Support Vector Machines</h2>
+<h3 id="large-margin-classification">Large Margin Classification</h3>
+<p>Support vector machines:</p>
+<p>Recall that the regularized cost function of logistic regression is <span class="math display">\[
+J(\theta) = \frac{1}{m}[\sum_{i=1}^{m}y^{(i)}(-\log(h_\theta(x^{(i)}))) + (1-y^{(i)})(-\log(1-h_\theta(x^{(i)})))] + \frac{\lambda}{2m}\sum_{j=1}^{m}\theta_j^2
+\]</span> and we want to find the <span class="math inline">\(\theta\)</span> such that <span class="math display">\[
+\min_{\theta} \frac{1}{m}[\sum_{i=1}^{m}y^{(i)}(-\log(h_\theta(x^{(i)}))) + (1-y^{(i)})(-\log(1-h_\theta(x^{(i)})))] + \frac{\lambda}{2m}\sum_{j=1}^{m}\theta_j^2
+\]</span> Note that <span class="math inline">\(m\)</span> is a constant in this formula. The value of <span class="math inline">\(m\)</span> doesn't affect <span class="math inline">\(\theta\)</span>.</p>
+<p>Let <span class="math inline">\(A = \sum_{i=1}^{m}y^{(i)}(-\log(h_\theta(x^{(i)}))) + (1-y^{(i)})(-\log(1-h_\theta(x^{(i)})))\)</span> and <span class="math inline">\(B=\frac{1}{2}\sum_{j=1}^{m}\theta_j^2\)</span>. Instead of writing <span class="math inline">\(A+\lambda B\)</span>, let's rewrite it as <span class="math inline">\(CA+B\)</span> (we can see <span class="math inline">\(C\)</span> as <span class="math inline">\(\frac{1}{\lambda}\)</span>)</p>
+<p>So our formula is: <span class="math display">\[
+\min_{\theta} C[\sum_{i=1}^{m}y^{(i)}(-\log(h_\theta(x^{(i)}))) + (1-y^{(i)})(-\log(1-h_\theta(x^{(i)})))]  + \frac{1}{2}\sum_{j=1}^{m}\theta_j^2
+\]</span> ### Support Vector Machine We want <span class="math inline">\(\sum_{i=1}^{m}y^{(i)}(-\log(h_\theta(x^{(i)}))) + (1-y^{(i)})(-\log(1-h_\theta(x^{(i)})))\)</span> to be as small as possible (close to 0), so we want to meet the requirements below:</p>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week7_SVM.png" alt="SVM" /><figcaption>SVM</figcaption>
+</figure>
+<p>The algorithm will choose the black line as the boundary over the pink line and the green line, as the black line has a larger minimum distance between the positive and negative samples (see the blue bands on both sides of the black line)</p>
+<p><img alt="SVMDB" src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week7_SVMDB.png" width="500"></p>
+<p>The value of <span class="math inline">\(C\)</span> decides how fast the boundary will change when there are outliers. For example, in the figure below, the boundary was the black line. If we add an outlier: - if <span class="math inline">\(C\)</span> is very large, the new boundary given by the algorithm will be the pink line (but we might not want the boundary to be this sensitive on one outlier) - if <span class="math inline">\(C\)</span> is not very large, the new boundary given by the algorithm will still stay around the black line</p>
+<p><img alt="LMC Outlier" src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week7_LMC_Outlier.png" width="500"></p>
+<h3 id="kernels">Kernels</h3>
+<p>Let's define <span class="math inline">\(f_1 = \text{similarity}(x, l^{(1)}) = \exp (-\frac{||x - l^{(1)}||^2}{2 \sigma^2})\)</span></p>
+<p>What does similarity represent? It represents how close the point <span class="math inline">\(x\)</span> is to the feature we're talking about (in this case <span class="math inline">\(l^{(i)}\)</span>).</p>
+<p>If the point <span class="math inline">\(x\)</span> is close to the feature point <span class="math inline">\(l^{(i)}\)</span>, then the numerator (<span class="math inline">\(||x - l^{(1)}||^2\)</span>) is small, so <span class="math inline">\(f\)</span> is close to 1.</p>
+<p>If the point <span class="math inline">\(x\)</span> is far from the feature point <span class="math inline">\(l^{(i)}\)</span>, then the numerator (<span class="math inline">\(||x - l^{(1)}||^2\)</span>) is large, so <span class="math inline">\(f\)</span> is close to 0.</p>
+<p>As for the <span class="math inline">\(\sigma\)</span> in the denominator, it controls how fast the similarity drops from 1 to 0 as the point moves further away from the feature.</p>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week7_Sigma.png" alt="Sigma" /><figcaption>Sigma</figcaption>
+</figure>
+<h3 id="choosing-landmarks">Choosing Landmarks</h3>
+<p>How can we choose landmarks? Let the landmarks to be at exactly the same locations as the training samples.</p>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week7_Choosing_Landmarks.png" alt="Choosing Landmarks" /><figcaption>Choosing Landmarks</figcaption>
+</figure>
+<p>That is, given training samples <span class="math inline">\((x^{(1)}, y^{(1)}), (x^{(2)}, y^{(2)}), \ldots, (x^{(m)}, y^{(m)})\)</span>, let <span class="math inline">\(l^{(1)} = x^{(1)}, l^{(2)} = x^{(2)}, \ldots, l^{(m)} = x^{(m)}\)</span>.</p>
+<p>For training sample <span class="math inline">\((x^{(i)}, y^{(i)})\)</span>, we map <span class="math inline">\(x^{(i)}\)</span> to <span class="math display">\[
+f = \begin{bmatrix}
+f_1^{(i)}\\
+f_2^{(i)}\\
+\ldots\\
+f_m^{(i)}
+\end{bmatrix}
+\]</span> where <span class="math display">\[
+f_1^{(i)} = \text{sim}(x^{(i)}, l^{(1)}), \\
+\ldots, \\
+f_i^{(i)} = \text{sim}(x^{(i)}, l^{(i)}) = \text{sim}(x^{(i)}, x^{(i)}) = 1, \\
+\ldots, \\
+f_m^{(i)} = \text{sim}(x^{(i)}, l^{(m)})
+\]</span></p>
+<h3 id="svm-with-kernels">SVM with Kernels</h3>
+<p>We pad <span class="math inline">\(f_0^{(i)} = 1\)</span> to the vector <span class="math inline">\(f\)</span> we have above and get a <span class="math inline">\(m+1\)</span>-dimention vector. To train the algorithm: <span class="math display">\[
+\min_{\theta} C[\sum_{i=1}^{m}y^{(i)}\text{cost1}(\theta^Tf^{(i)}) + (1-y^{(i)})\text{cost0}(\theta^Tf^{(i)})]  + \frac{1}{2}\sum_{j=1}^{m}\theta_j^2
+\]</span> See the figure above for the definition of cost0 and cost1.</p>
+<h3 id="svm-parameters">SVM Parameters</h3>
+<p><span class="math inline">\(C(=\frac{1}{\lambda})\)</span>: - Large C: lower bias, high variance - Small C: higher bias, low variance</p>
+<p><span class="math inline">\(\sigma\)</span>: - Large <span class="math inline">\(\sigma\)</span>: feature varies more smoothly. Higher bias, lower variance. - Small <span class="math inline">\(\sigma\)</span>: feature varies less smoothly. Lower bias, higher variance.</p>
+<p>Note:</p>
+<p>Do perform feature scaling before using Gaussian Kernel.</p>
+<p>If not scaled, e.g. feature 1 is the size of the house (~1000 sqft), and feature 2 is the number of bedrooms (1-5), then the distance <span class="math inline">\(||x-l||^2 = (x_1-l_1)^2+(x_2-l_2)^2+\ldots\)</span> will be dominated by the first feature.</p>
+<h3 id="logistic-regression-v.s.-svm-when-to-use-which">Logistic Regression v.s. SVM: when to use which?</h3>
+<p>Let n be the number of features, and m be the number of training samples. - If n is large (relative to m), use logistic regression, or SVM without a kernel (linear kernel), because we have so many features but a small training set, so a linear function will probably do fine - If n is small and m is intermediate, use SVM with Gaussian kernel - If n is small but m is large, then add more features and use logistic regression, or SVM without a kernel (linear kernel), because SVM with Gaussian will be slow if we have too many training samples</p>
+<h2 id="week-8---unsupervised-learning-dimensionality-reduction">Week 8 - Unsupervised Learning, Dimensionality Reduction</h2>
+<h3 id="unsupervised-learning">Unsupervised Learning</h3>
+<p>Supervised learning:<br />
+given a labeled training set and the goal is to find the decision boundary that separates the positive label examples and the negative label examples.</p>
+<p>Unsupervised learning:<br />
+given data that does not have any labels associated with it and we just ask the algorithm find some structure in the data for us.</p>
+<p>Examples of structures: clusters (clustering algorithm)</p>
+<h3 id="k-means-algorithm-a-clustering-algorithm">K-Means Algorithm: a Clustering Algorithm</h3>
+<figure>
+<img src="https://stanford.edu/~cpiech/cs221/img/kmeansViz.png" alt="K-Means" /><figcaption>K-Means</figcaption>
+</figure>
+<ol type="a">
+<li>List all training examples.<br />
+</li>
+<li>Init: randomly find two cluster centroids (red and blue)<br />
+</li>
+<li>Cluster assignment: loop through all training examples. For each of them, assign it to the red centroid if it's closer to the red centroid, or assign it to the blue centroid if it's closer to the blue centroid.<br />
+</li>
+<li>Move centroid: calculate the mean of the red training examples, and move the red centroid to there. Same for blue centroid.<br />
+</li>
+<li>Repeat step 2 and 3 -- new round of color assignment, move centroids, etc.<br />
+</li>
+<li>After a few rounds, the cluster centroid will not change during the move centroid step.</li>
+</ol>
+<p>For the move centroid step: what if no points are assigned to this centroid?<br />
+In this case, let's just eliminate the centroid, and our goal will change from "assign the points to K clusters" to "assign the points to K-1 clusters"</p>
+<p>If the clusters are non-separated, the K-Means algorithm will still try to cluster them into K clusters.</p>
+<h3 id="optimization-objective">Optimization Objective</h3>
+<p>The supervised learning algorithms we've seen like linear regression and logistic regression have an optimization objective or some cost function that the algorithm was trying to minimize.</p>
+<p>It turns out that K-Means also has an optimization objective or a cost function that it's trying to minimize.</p>
+<p>Notations: - <span class="math inline">\(c^{(i)}\)</span>: index of cluster <span class="math inline">\((1, 2, \ldots, K)\)</span> to which example <span class="math inline">\(x^{(i)}\)</span> is currently assigned - <span class="math inline">\(\mu_k\)</span>: cluster centroid <span class="math inline">\(k\)</span> - <span class="math inline">\(\mu_{c^{(i)}}\)</span>: cluster centroid of cluster to which example <span class="math inline">\(x^{(i)}\)</span> has been assigned</p>
+<p>e.g. <span class="math inline">\(x^{(i)}\)</span> is assigned to cluster 5, then <span class="math inline">\(c^{(i)} = 5\)</span>, <span class="math inline">\(\mu_{c^{(i)}} = \mu_5\)</span></p>
+<p>The cost function (aka distortion) is: <span class="math display">\[
+J(c^{(1)}, \ldots, c^{(m)}, \mu _1, \ldots, \mu _K) = \frac{1}{m} \sum_{i=1}^m ||x^{(i)} - \mu _{c^{(i)}}||^2
+\]</span> Note that <span class="math inline">\(||x^{(i)} - \mu_{c^{(i)}}||^2\)</span> is the distance between the training example and the cluster centroid it's assigned to.</p>
+<p>And the goal is: <span class="math display">\[
+\min_{c^{(1)}, \ldots, c^{(m)}, \mu_1, \ldots, \mu_K} J(c^{(1)}, \ldots, c^{(m)}, \mu_1, \ldots, \mu_K)
+\]</span> Note that it's not possible for the cost function to increase during each iteration. If you see your cost increasing, there must be something wrong with your code.</p>
+<h3 id="random-initialization-of-clusters">Random Initialization of Clusters</h3>
+<p>Randomly pick K training examples and set them to be <span class="math inline">\(\mu_1, \ldots, \mu_k\)</span>.</p>
+<p>If you don't want to stuck at a local optimum, do multiple retries. For example, do 100 different random initializations and find the best clustering (lowest cost).</p>
+<p>If K is small, say less than 10, then multiple random initializations is very helpful to find a good clustering. But if K is large, say 100, then having multiple random initializations is less likely to make a huge difference.</p>
+<p>That's because when K is large, our first random initialization will probably give us a decent solution. All retries after that will provide similar results.</p>
+<h3 id="choosing-the-number-of-clusters">Choosing the Number of Clusters</h3>
+<ol type="1">
+<li>Elbow method (could work, but not usually doing well) <img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week8_Elbow_Method.png" alt="Elbow Method" /></li>
+</ol>
+<p>But sometimes it's hard to find the elbow, see the picture on the RHS.</p>
+<ol start="2" type="1">
+<li>Think about the later purpose. How many clusters do we want? e.g. T-shirt size, do we want 3 sizes (S, M, L) or 5 sizes (XS, S, M, L, XL)?</li>
+</ol>
+<h3 id="data-compression">Data Compression</h3>
+<p><img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week8_2D_to_1D.png" alt="2D to 1D" /> <img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week8_3D_to_2D.png" alt="3D to 2D" /> Basic idea: project the points in a N-dimension space to a (N-1)-dimension space.</p>
+<h3 id="principal-components-analysis">Principal Components Analysis</h3>
+<p>For the problem of dimensionality reduction, the most commonly used algorithm is principal components analysis, or PCA.</p>
+<p>The goal of PCA:</p>
+<p><img alt="PCA" src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week8_PCA.png" width="500"></p>
+<p>The length of those blue line segments is called the projection error. What PCA does is to find a lower-dimensional surface onto which to project the data in order to minimize the error. Note that PCA is different from linear regression (least square). For linear regression, the blue line segments are always vertical, while for PCA, the blue line segments are perpendicular to the red line.</p>
+<h3 id="pca-algorithm----reduce-n-dimensional-vectors-to-k-dimensional">PCA Algorithm -- reduce n-dimensional vectors to k-dimensional</h3>
+<ol type="1">
+<li>Compute "covariance matrix" <span class="math display">\[
+\Sigma = \frac{1}{m} \sum_{i=1}^n(x^{(i)})(x^{(i)})^T
+\]</span></li>
+<li>Computer eigenvectors of matrix <span class="math inline">\(\Sigma\)</span> <span class="math display">\[
+[U, S, V] = svd(sigma) // singular value decomposition
+\]</span></li>
+<li>What we need from above is the <span class="math inline">\(U\)</span> matrix. Suppose <span class="math inline">\((x^{(i)})\)</span> is <span class="math inline">\(n \times 1\)</span>, then <span class="math inline">\(U\)</span> is a <span class="math inline">\(n \times n\)</span> matrix, and each column of it will be the <span class="math inline">\(u^{(i)}\)</span> vector we want (n vectors in total). To get a k-dimensional space, we can just take the first <span class="math inline">\(k\)</span> columns. Let's call it <span class="math inline">\(U_{reduce}\)</span> of shape <span class="math inline">\(n \times k\)</span>.</li>
+<li>Then, for each <span class="math inline">\(x \in R^n\)</span>, we want to find a <span class="math inline">\(z \in R^k\)</span> which is a lower-dimensional representation of our vector. Then <span class="math inline">\(z = U_{reduce}^T * x\)</span>.</li>
+</ol>
+<h3 id="reconstruction-from-the-compressed-representation">Reconstruction from the Compressed Representation</h3>
+<p>The above algorithm shows how to reduce an n-dimensional vector to a k-dimensional vector. How can we do it backward? <span class="math display">\[
+x_{approx}^{(i)} = U_{reduce} * z^{(i)}
+\]</span> <img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week8_Reconstruction.png" alt="Reconstruction" /></p>
+<h3 id="how-to-choose-k-for-pca">How to Choose k for PCA</h3>
+<p>We want to choose a <span class="math inline">\(k\)</span> such that "99% variance is retained" <span class="math display">\[
+\frac{\text{average squared projection error}}{\text{total variation}} = 
+\frac{\frac{1}{m}\sum_{i=1}^m||x^{(i)} - x^{(i)}_{approx}||^2}{\frac{1}{m}\sum_{i=1}^m||x^{(i)} ||^2} \leq 0.01
+\]</span> In real life, in order to retain 99% of the variance, we can often reduce the dimension of the data significantly and still retain most of the variance.</p>
+<p>That's because, for most real-life data, many features are highly correlated, so it turns out to be possible to compress the data a lot and still retain 99% of the variance.</p>
+<p>The algorithm is simply starting from <span class="math inline">\(k = 1\)</span> and check if the result is less than 0.01. If it works, then take the value, else increment <span class="math inline">\(k\)</span> by 1 and repeat.</p>
+<p>However, it's very inefficient.</p>
+<p>Instead, let's use the <span class="math inline">\(S\)</span> in <span class="math inline">\([U, S, V] = svd(sigma)\)</span>.</p>
+<p><span class="math display">\[
+S = \begin{bmatrix}
+S_{11} &amp; 0 &amp; \ldots &amp; 0\\
+0 &amp; S_{22} &amp; \ldots &amp; 0\\
+0 &amp; 0 &amp; \ddots &amp; \vdots\\
+0 &amp; \ldots &amp; 0 &amp; S_{nn}
+\end{bmatrix}
+\]</span></p>
+<p>With this, the value above can be easily computed as <span class="math display">\[
+\frac{\frac{1}{m}\sum_{i=1}^m||x^{(i)} - x^{(i)}_{approx}||^2}{\frac{1}{m}\sum_{i=1}^m||x^{(i)} ||^2} = 1 - \frac{\sum_{i=1}^k S_{ii}}{\sum_{i=1}^n S_{ii}}
+\]</span> So we want <span class="math display">\[
+\frac{\sum_{i=1}^k S_{ii}}{\sum_{i=1}^n S_{ii}} \geq 0.99
+\]</span></p>
+<h3 id="applying-pca">Applying PCA</h3>
+<p>What PCA does is that it provides a mapping that reduces, say, <span class="math inline">\(x^{(i)} \in R^{10000}\)</span> to <span class="math inline">\(z^{(i)} \in R^{1000}\)</span>. The mapping is defined by running PCA <strong>only</strong> on the training set, not the cross-validation set or the testing set.</p>
+<p>So the training set will change from <span class="math inline">\((x^{(i)}, y^{(i)})\)</span> to <span class="math inline">\((z^{(i)}, y^{(i)}) \;\; \forall i = 1, \ldots, m\)</span>. It will speed up our training.</p>
+<p>But don't abuse PCA. Don't use PCA right away. Always try to train <span class="math inline">\((x^{(i)}, y^{(i)})\)</span> first -- only if it doesn't work (e.g. very slow, very memory-consuming), then try to use PCA to do the mapping and train <span class="math inline">\((z^{(i)}, y^{(i)})\)</span>.</p>
+<h2 id="week-9---anomaly-detection-recommender-systems">Week 9 - Anomaly Detection, Recommender Systems</h2>
+<h3 id="anomaly-detection">Anomaly Detection</h3>
+<p>Given a set of points and a new point <span class="math inline">\(x_{test}\)</span>, is it a normal case or an anomaly?</p>
+<h3 id="gaussian-normal-distribution">Gaussian (Normal) Distribution</h3>
+<p><span class="math display">\[
+x \thicksim N(\mu, \sigma^2)
+\]</span> where <span class="math inline">\(\mu\)</span> is the mean and <span class="math inline">\(\sigma^2\)</span> is the variance. <span class="math display">\[
+P(x; \mu, \sigma^2) = \frac{1}{\sigma \sqrt{2\pi}}\text{exp}(-\frac{(x-\mu)^2}{2\sigma^2})
+\]</span> When given a data set of <span class="math inline">\(m\)</span> points, how can we estimate a Gaussian distribution for them?</p>
+<p>Let <span class="math inline">\(\mu = \frac{1}{m} \sum_{i=1}^m x^{(i)}\)</span> and <span class="math inline">\(\sigma^2 = \frac{1}{m} \sum_{i=1}^m (x^{(i)} - \mu)^2\)</span></p>
+<h3 id="density-estimation">Density Estimation</h3>
+<p>Let's assume each feature is distributed according to Gaussian distribution.</p>
+<p>That is, given the training set <span class="math inline">\(x^{(1)}, x^{(2)}, \ldots, x^{(m)}\)</span>, each <span class="math inline">\(x \in R^n\)</span>, we assume <span class="math display">\[
+x_1 \thicksim N(\mu_1, \sigma_1^2), \;x_2 \thicksim N(\mu_2, \sigma_2^2), \;\ldots, \;x_n \thicksim N(\mu_n, \sigma_n^2)
+\]</span> and that <span class="math display">\[
+P(x) = P(x_1; \mu_1, \sigma_1^2)P(x_2; \mu_2, \sigma_2^2) \ldots P(x_n; \mu_n, \sigma_n^2) \\
+= \prod_{i=1}^n P(x_i; \mu_i, \sigma_i^2)
+\]</span></p>
+<p>When given a new example <span class="math inline">\(x\)</span>, calculate <span class="math inline">\(P(x)\)</span> as described above, and report anomaly if <span class="math inline">\(P(x) &lt; \epsilon\)</span>.</p>
+<p><img alt="Anomaly" src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week9_Anomaly.png" width="500"></p>
+<p>The pink shade on the figure on the top matches the pink shade on the figure on the bottom, which labels the area where <span class="math inline">\(P(x) &lt; \epsilon\)</span>.</p>
+<p>Note that we usually use much more normal training samples than anomalous training samples (e.g. the engine example we use have 10000 normal engines and 20 flawed engines), so we might face a skewed class problem.</p>
+<h3 id="anomaly-detection-vs.-supervised-learning">Anomaly Detection vs. Supervised Learning</h3>
+<p>Why do we use anomaly detection? Since we have a set of labeled data and we want to predict a new data's label, why don't we use supervised learning?</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Anomaly Detection</th>
+<th>Supervised Learning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A very small number of positive examples and a large number of negative examples</td>
+<td>Large number of positive and negative examples</td>
+</tr>
+<tr class="even">
+<td>Many different types of anomalies, so it's hard to "learn" what positive examples look like</td>
+<td>Enough positive and negative examples for the algorithm to "get a sense of" what positive examples look like</td>
+</tr>
+</tbody>
+</table>
+<h3 id="non-gaussian-features">Non-Gaussian Features</h3>
+<p>If some of the features don't seem to be Gaussian, how can we transform it to be Gaussian?</p>
+<p>One way is to use <span class="math inline">\(P(\log(x_i); \mu_i, \sigma_i^2)\)</span> rather than the usual <span class="math inline">\(P(x_i; \mu_i, \sigma_i^2)\)</span> form.</p>
+<p>Some other examples are: <span class="math inline">\(P(\log(x_i+1); \mu_i, \sigma_i^2)\)</span>, <span class="math inline">\(P(\sqrt{x_i}; \mu_i, \sigma_i^2)\)</span>, <span class="math inline">\(P(x_i^{0.75}; \mu_i, \sigma_i^2)\)</span> etc. Just play around with it and make the data look more Gaussian.</p>
+<h3 id="multivariate-gaussian-distribution">Multivariate Gaussian Distribution</h3>
+<p>Sometimes, anomaly detection fails to recognize an anomaly, e.g. the green dot below. The algorithm has seen even less <span class="math inline">\(x_1\)</span> and even larger <span class="math inline">\(x_2\)</span>, so it thinks the green dot is also normal.</p>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week9_Multivariate_Gaussian_Distribution.png" alt="Multivariate Gaussian Distribution" /><figcaption>Multivariate Gaussian Distribution</figcaption>
+</figure>
+<p>Multivariate Gaussian Distribution: Instead of modelling <span class="math inline">\(P(x_1),P(x_2)\)</span> separately, model <span class="math inline">\(P(x)\)</span> in one go -- <span class="math inline">\(P(x; \mu, \sigma)\)</span>.</p>
+<p>Parameters: <span class="math inline">\(\mu \in R^n, \; \Sigma \in R^{n \times n}\)</span></p>
+<p>Some examples:</p>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week9_MGD1.png" alt="MGD1" /><figcaption>MGD1</figcaption>
+</figure>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week9_MGD2.png" alt="MGD2" /><figcaption>MGD2</figcaption>
+</figure>
+<h3 id="multivariate-gaussian-distribution-v.s.-the-original-model">Multivariate Gaussian Distribution v.s. the Original Model</h3>
+<p>Turns out that for the original models, the contours of the graph are always axis aligned, i.e. their <span class="math inline">\(\Sigma\)</span> matrix's non-diagonal entries are all 0, so the features' covariance is 0.</p>
+<p>With the original models, we can't have contours that look like the 45 degrees tilted version as we have in the figure above.</p>
+<p>The original version cannot capture the correlations between features, so sometimes we need to add some other features to make it work, e.g. apart from <code>CPU_COUNT</code> and <code>NETWORK_SPEED</code>, we may also need to add a feature <code>CPU_COUNT^2 / NETWORK_SPEED</code>.</p>
+<p>Multivariate Gaussian Distribution, on the other hand, can capture the correlations between features automatically, so we don't need to add new features.</p>
+<p>But Multivariate Gaussian Distribution is computationally more expensive. So most of the time people use the original model plus manually design some new features.</p>
+<h3 id="recommander-systems">Recommander Systems</h3>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week9_Notations.png" alt="Notations" /><figcaption>Notations</figcaption>
+</figure>
+<h3 id="content-based-recommendations">Content Based Recommendations</h3>
+<p>Optimization objective:</p>
+<p>To learn <span class="math inline">\(\theta^{(j)}\)</span> (parameter for user j) <span class="math display">\[
+\min_{\theta^{(j)}} \frac{1}{2} \sum_{i:r(i, j) = 1} ((\theta^{(j)})^Tx^{(i)} - y^{(i, j)})^2 + \frac{\lambda}{2} \sum_{k = 1}^n(\theta_k^{(j)})^2
+\]</span> To learn <span class="math inline">\(\theta^{(1)}, \theta^{(2)}, \ldots, \theta^{(n_u)}\)</span> (parameter for all users): <span class="math display">\[
+\min_{\theta^{(1)}, \theta^{(2)}, \ldots, \theta^{(n_u)}} \frac{1}{2} \sum_{j=1}^{n_u} \sum_{i:r(i, j) = 1} ((\theta^{(j)})^Tx^{(i)} - y^{(i, j)})^2 + \frac{\lambda}{2}  \sum_{j=1}^{n_u} \sum_{k = 1}^n(\theta_k^{(j)})^2
+\]</span> Note that originally the coefficients are <span class="math inline">\(\frac{1}{2m^{(j)}}\)</span> and <span class="math inline">\(\frac{\lambda}{2m^{(j)}}\)</span>, but since <span class="math inline">\(m^{(j)}\)</span> is a constant, we can ignore it for both denumerator.</p>
+<p>Gradient descent: <span class="math display">\[
+\theta_k^{(j)} := \theta_k^{(j)} - \alpha \sum_{i:r(i, j) = 1} ((\theta^{(j)})^Tx^{(i)} - y^{(i, j)}) x_k^{(i)} \;\; \text{when } k = 0 \\
+\theta_k^{(j)} := \theta_k^{(j)} - \alpha \sum_{i:r(i, j) = 1} (((\theta^{(j)})^Tx^{(i)} - y^{(i, j)}) x_k^{(i)} + \lambda \theta_k^{(j)}) \;\; \text{when } k \neq 0
+\]</span></p>
+<p>What if the movies are not content-based?</p>
+<h3 id="collaborative-filtering">Collaborative Filtering</h3>
+<p>The algorithm has a very interesting property -- feature learning. It means that the algorithm can start to learn for itself what features to use.</p>
+<p>Let's say we don't know the features <span class="math inline">\(x\)</span> for the movies, but we do know the users' ratings and their <span class="math inline">\(\theta\)</span>'s.</p>
+<p>From the four equations in the bottom right corner, we can roughly guess that <span class="math inline">\(x^{(1)} = [1, 1.0, 0.0]^T\)</span>.</p>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week9_Collaborative_Filtering.png" alt="Collaborative Filtering" /><figcaption>Collaborative Filtering</figcaption>
+</figure>
+<p>So the optimization algorithm will be given <span class="math inline">\(\theta^{(1)}, \theta^{(2)}, \ldots, \theta^{(n_u)}\)</span> to learn <span class="math inline">\(x^{(i)}\)</span>: <span class="math display">\[
+\min_{x^{(i)}} \frac{1}{2} \sum_{j:r(i, j) = 1} ((\theta^{(j)})^Tx^{(i)} - y^{(i, j)})^2 + \frac{\lambda}{2} \sum_{k = 1}^n(\theta_k^{(i)})^2
+\]</span> Similarly, given <span class="math inline">\(\theta^{(1)}, \theta^{(2)}, \ldots, \theta^{(n_u)}\)</span> to learn <span class="math inline">\(x^{(1)}, x^{(2)}, \ldots, x^{(n_m)}\)</span>: <span class="math display">\[
+\min_{x^{(1)}, x^{(2)}, \ldots, x^{(n_m)}} \frac{1}{2} \sum_{i=1}^{n_m} \sum_{j:r(i, j) = 1} ((\theta^{(j)})^Tx^{(i)} - y^{(i, j)})^2 + \frac{\lambda}{2}  \sum_{i=1}^{n_m} \sum_{k = 1}^n(\theta_k^{(i)})^2
+\]</span></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Content Based</th>
+<th>Collaborative Filtering</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Given features <span class="math inline">\(x^{(1)}, x^{(2)}, \ldots, x^{(n_m)}\)</span> and user ratings, we can estimate <span class="math inline">\(\theta^{(1)}, \theta^{(2)}, \ldots, \theta^{(n_u)}\)</span></td>
+<td>Given <span class="math inline">\(\theta^{(1)}, \theta^{(2)}, \ldots, \theta^{(n_u)}\)</span>, we can estimate features <span class="math inline">\(x^{(1)}, x^{(2)}, \ldots, x^{(n_m)}\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<p>This is like a chick and egg problem. In reality, we can do <span class="math inline">\(\theta \rightarrow x \rightarrow \theta \rightarrow x \rightarrow \ldots\)</span> to keep estimating and converge to a reasonable result.</p>
+<p>However, there is also an efficient algorithm to not go back and forth but do the same thing, which is to put them together.</p>
+<p>Our new cost function: <span class="math display">\[
+\min_{x^{(1)}, x^{(2)}, \ldots, x^{(n_m)}, \theta^{(1)}, \theta^{(2)}, \ldots, \theta^{(n_u)}} \frac{1}{2} \sum_{(i, j):r(i, j) = 1} ((\theta^{(j)})^Tx^{(i)} - y^{(i, j)})^2 + \frac{\lambda}{2}  \sum_{i=1}^{n_m} \sum_{k = 1}^n(\theta_k^{(i)})^2 + \frac{\lambda}{2}  \sum_{j=1}^{n_u} \sum_{k = 1}^n(\theta_k^{(j)})^2
+\]</span></p>
+<p>Algorithm:</p>
+<ol type="1">
+<li><p>Init <span class="math inline">\(x^{(1)}, x^{(2)}, \ldots, x^{(n_m)}, \theta^{(1)}, \theta^{(2)}, \ldots, \theta^{(n_u)}\)</span> to small random values</p></li>
+<li><p>Minimize the cost function above using gradient descent <span class="math display">\[
+x_k^{(i)} := x_k^{(i)} - \alpha \sum_{j:r(i, j) = 1} (((\theta^{(j)})^Tx^{(i)} - y^{(i, j)}) \theta_k^{(j)} + \lambda x_k^{(i)}) \\
+\theta_k^{(j)} := \theta_k^{(j)} - \alpha \sum_{i:r(i, j) = 1} (((\theta^{(j)})^Tx^{(i)} - y^{(i, j)}) x_k^{(i)} + \lambda \theta_k^{(j)})
+\]</span> Note that the special case for 0 is gone since if we combine the two to the new cost function as above, we eliminate the limit that <span class="math inline">\(x_0 = 1\)</span> and <span class="math inline">\(\theta_0 = 1\)</span>. That is because if the algorithm really needs a term to be 0 all the time, it can train a term like this itself.</p></li>
+<li><p>Our predicting result will be <span class="math inline">\(\theta^Tx\)</span></p></li>
+</ol>
+<h3 id="vectorization">Vectorization</h3>
+<p>The matrix in the top right corner equals to<span class="math inline">\(X\Theta^T\)</span>.</p>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week9_Vectorization.png" alt="Vectorization" /><figcaption>Vectorization</figcaption>
+</figure>
+<h3 id="application-similar-movies">Application: Similar Movies</h3>
+<p>Let's say movie <span class="math inline">\(i\)</span>'s features is <span class="math inline">\(x^{(i)}\)</span>. How can we find a movie <span class="math inline">\(j\)</span> that is similar to the movie <span class="math inline">\(i\)</span>?</p>
+<p>We can do so by finding a movie with features <span class="math inline">\(x^{(j)}\)</span> such that <span class="math inline">\(||x^{(i)} - x^{(j)}||\)</span> is small.</p>
+<p>What if there is a user that hasn't given any rating to any movie?</p>
+<p>If we go to the cost function above, the first term will be gone since none of <span class="math inline">\(r(i, j) = 1\)</span> for that user (they didn't give any rating). So what we try to minimize will be <span class="math inline">\(\frac{\lambda}{2} \sum_{j=1}^{n_u} \sum_{k = 1}^n(\theta_k^{(j)})^2\)</span>, which will give us <span class="math inline">\(\theta = 0\)</span>.</p>
+<p>But it doesn't make sense to say that this user dislikes all movies.</p>
+<p>So rather than giving all zeros, let's assume the user's rating for a movie is the average rating of that movie from other users who rated that movie.</p>
+<h2 id="week-10---large-scale-machine-learning">Week 10 - Large Scale Machine Learning</h2>
+<p>"In machine learning, it's not who has the best algorithm that wins. It's who has the most data."</p>
+<p>A problem with learning with large datasets is that recall for gradient descent, we have a summation from 1 to m where m is the size of the dataset. So for each gradient descent, we'll need to run the summation over the entire dataset, which is very inefficient.</p>
+<p>How can we know if a dataset is big enough? Or should we add more data to it to get a better training result?</p>
+<p>The answer is: learning curves! (week 6)</p>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week6_Learning_Curves.png" alt="Learning Curves" /><figcaption>Learning Curves</figcaption>
+</figure>
+<p>Plot a learning curve and see whether it's a high variance or a high bias. If high variance, then increasing the data size will give us a better result, while if it's a high bias, increasing the data size won't help.</p>
+<h3 id="stochastic-gradient-descent">Stochastic Gradient Descent</h3>
+<p>As stated above, when the data size is large, our old gradient descent (batch gradient descent) will be very expensive to calculate. To scale the algorithm for larger datasets, we'll use stochastic gradient descent.</p>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week10_Stochastic_Gradient_Descent.png" alt="Stochastic Gradient Descent" /><figcaption>Stochastic Gradient Descent</figcaption>
+</figure>
+<p>Note that we no longer have that summation in the equation. We improve each <span class="math inline">\((x^{(i)}, y^{(i)})\)</span> only on its old value, rather than waiting for the summation to get all the old values.</p>
+<p>In the figure below: - red is for batch gradient descent: always moves to a better value - pink is for stochastic gradient descent: takes more steps since each iteration is faster, but not every step is a good direction</p>
+<p><img alt="BGD vs SGD" src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week10_BGD_vs_SGD.png" width="500"></p>
+<h3 id="mini-batch-gradient-descent">Mini-batch Gradient Descent</h3>
+<ul>
+<li>Batch gradient descent: use all <span class="math inline">\(m\)</span> examples in each iteration</li>
+<li>Stochastic gradient descent: use 1 examples in each iteration</li>
+<li>Mini-batch gradient descent: use <span class="math inline">\(b\)</span> examples in each iteration (<span class="math inline">\(b\)</span> is up to our choice, usually from 2 to 100)</li>
+</ul>
+<p>e.g. when <span class="math inline">\(b = 10\)</span>: <span class="math display">\[
+\theta_j := \theta_j - \alpha \frac{1}{10}\sum_{i=k}^{k+9} (h(x^{(i)}) - y^{(i)})x_j^{(i)}
+\]</span> And in each iteration, increase <span class="math inline">\(k\)</span> by 10.</p>
+<h3 id="checking-for-convergence">Checking for Convergence</h3>
+<p>When doing batch gradient descent, we can make sure that the function converges by looking at the cost function -- it should be non-increasing.</p>
+<p>How can we check for stochastic gradient descent? The answer is to compute <span class="math inline">\(cost(\theta, (x^{(i)}, y^{(i)}))\)</span> before updating <span class="math inline">\(\theta\)</span> using <span class="math inline">\((x^{(i)}, y^{(i)})\)</span>. And for every, say, 1000 iterations, plot the average cost of the last 1000 iterations and see how well the algorithm runs.</p>
+<p>Usually, stochastic gradient descent ends up in a place that is close to the global minimus (but not exactly the global minimum). If we want stochastic gradient descent to actually converge to the global minimum, we can slowly <strong>decrease</strong> the learning rate alpha over time: <span class="math inline">\(\alpha = \frac{\text{const1}}{\text{iterationNumber + const2}}\)</span>.</p>
+<p>But people usually don't do this, because it requires some tuning on the constants. But if we can tune it well, we will reach the global minimum.</p>
+<h3 id="online-learning">Online Learning</h3>
+<p>Let this code run forever on the server: <span class="math display">\[
+\text{get } (x, y )\text{ from the user and update } \theta \text{ using } (x, y):\\
+\theta_j := \theta_j - \alpha (h(x) - y)x_j \;\;\forall j = 1, \ldots, n\\
+\text{after that, we can discard } (x, y)
+\]</span> If many users keep arriving at the website, we'll have enough data for training. And this is very adaptive e.g. when the trend changes, <span class="math inline">\(\theta\)</span> can correspond to the change because of tons of updated data from the users.</p>
+<h2 id="week-11---photo-ocr">Week 11 - Photo OCR</h2>
+<h3 id="photo-ocr-pipeline">Photo OCR Pipeline</h3>
+<ol type="1">
+<li>Text detection: find the text regions on the photo</li>
+<li>Character segmentation: segment the text into individual chars</li>
+<li>Character classification</li>
+</ol>
+<h3 id="sliding-window">Sliding Window</h3>
+<p>e.g. pedestrian detection</p>
+<ol type="1">
+<li>Train some sample patches of size <span class="math inline">\(w * h\)</span></li>
+<li>Slide a frame of size <span class="math inline">\(w * h\)</span> through the photo, see if the segment in the frame is positive/negative</li>
+<li>Slide the frame by <code>step size</code> (the smaller the better, but also more computationally expensive)</li>
+<li>Resize the frame to a bigger/smaller size, repeat the steps above (because the size of pedestrians in the photo are different depending on how close/far they are)</li>
+</ol>
+<h3 id="text-detection">Text Detection</h3>
+<p>We'll run the sliding window algorithm and find the characters, then "expand" the text region.</p>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week11_Text_Detection.png" alt="Text Detection" /><figcaption>Text Detection</figcaption>
+</figure>
+<p>How to know where to split the character?</p>
+<p>Look for a blank line in the middle between two chars.</p>
+<figure>
+<img src="https://raw.githubusercontent.com/illithor/Images/master/Andrew_Ng_ML/Week11_Character_Segmentation.png" alt="Character Segmentation" /><figcaption>Character Segmentation</figcaption>
+</figure>
+<h3 id="artificial-data-synthesis">Artificial Data Synthesis</h3>
+<p>If the number of training data is not enough, we can synthesize data. But before we do that, let's consider the following:</p>
+<ol type="1">
+<li>Make sure we have a low bias classifier before synthesizing more data. If the classifier is of high bias, increasing the number of training data wouldn't help.</li>
+<li>How much work will it take to synthesize 10x more data?</li>
+</ol>
+<h3 id="what-part-of-the-pipeline-to-work-on-next">What Part of the Pipeline to Work on Next？</h3>
+<p>Use Celling Analysis.</p>
+<p>Let's say we have a pipeline:</p>
+<p>Step 1 ---&gt; Step 2 ---&gt; Step 3</p>
+<ol type="1">
+<li>Check the overall accuracy of the pipeline: 72%</li>
+<li>Instead of using the output from <code>Step 1</code>, manually give <code>Step 2</code> 100% accurate data as input, and the accuracy of the entire pipeline is now 89%</li>
+<li>Instead of using the output from <code>Step 2</code>, manually give <code>Step 3</code> 100% accurate data as input, and the accuracy of the entire pipeline is now 99%</li>
+</ol>
+<p>So we know that: if we improve <code>Step 1</code>'s accuracy, the overall accuracy goes up by 17%, and if we improve <code>Step 2</code>'s accuracy, the overall accuracy goes up by 10%, etc.</p>
+<p>Therefore, we should put more effort into <code>Step 1</code>.</p>
+
+  </section>
+
+  
+
+<section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_config = function () {
+        this.page.url = 'http://illithor.github.io/2020/06/23/Machine-Learning-Coursera-Andrew-Ng/';
+        this.page.identifier = '/2020/06/23/Machine-Learning-Coursera-Andrew-Ng/';
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://shirak-me.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+</article>
+
+
+            <footer class="footer">
+
+    
+    <script type="text/javascript">
+    var disqus_shortname = 'shirak-me';
+    var disqus_config = function () {
+        this.page.url = 'http://illithor.github.io/2020/06/23/Machine-Learning-Coursera-Andrew-Ng/';
+        this.page.identifier = '/2020/06/23/Machine-Learning-Coursera-Andrew-Ng/';
+        this.page.title = 'Machine Learning (Coursera, Andrew Ng)';
+    };
+    (function(){
+      var d = document;
+      var dsq = d.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (d.head || d.body).appendChild(dsq);
+    })();
+    </script>
+    
+
+    <span class="footer__copyright">&copy; 2014-2025. | Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> | Theme <a href="https://github.com/someus/huno" target="_blank" rel="noopener">Huno</a> | Made with ♥ by <a href="/about">Kinnara</a></span>
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+      
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
