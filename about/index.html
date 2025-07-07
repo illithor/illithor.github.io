@@ -175,13 +175,13 @@ classes that you can use:
     <ul>
 <li>My name is Kiera Li (Yingzao Li). You may also know me as <a href="https://en.wikipedia.org/wiki/Kinnara" target="_blank" rel="noopener">Kinnara</a> (or <a href="https://zh.wikipedia.org/wiki/%E7%B4%A7%E9%82%A3%E7%BD%97" target="_blank" rel="noopener">紧那罗</a> in Mandarin).</li>
 <li>I graduated from the University of Waterloo with a Bachelor of Computer Science and a minor in German in 2021.</li>
-<li>I am interested in (roughly in this order):
-<ul>
+<li>I am interested in (roughly in this order):<ul>
 <li>literature (almost all kinds of)</li>
-<li>music (<a href="https://en.wikipedia.org/wiki/Lacrimosa_(band)" target="_blank" rel="noopener">Lacrimosa</a>, metal, neofolk, neoclassical, gothic, darkwave, martial industrial, <a href="https://en.wikipedia.org/wiki/Cold_Meat_Industry" target="_blank" rel="noopener">CMI bands</a>)</li>
+<li>music (<a href="https://en.wikipedia.org/wiki/Lacrimosa_(band" target="_blank" rel="noopener">Lacrimosa</a>), metal, neofolk, neoclassical, gothic, darkwave, martial industrial, <a href="https://en.wikipedia.org/wiki/Cold_Meat_Industry" target="_blank" rel="noopener">CMI bands</a>)</li>
 <li>religion (major religions)</li>
 <li>language learning (mostly German, recently Sanskrit)</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
   </section>
@@ -217,7 +217,22 @@ classes that you can use:
     <!--kill ie6 -->
 <!--[if IE 6]>
   <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
-<![endif]--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<![endif]-->
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

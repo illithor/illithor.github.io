@@ -16,12 +16,12 @@
     
     
 
-    <meta name="description" content="A similar website was deployed about 3 years ago when I was drafting the resume for my first internship. However, I haven&#39;t updated the website since then. I always think of rebuilding this website, b">
+    <meta name="description" content="A similar website was deployed about 3 years ago when I was drafting the resume for my first internship. However, I haven’t updated the website since then. I always think of rebuilding this website, b">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Why I rebuilt this website | Kinnara&#39;s Blog">
 <meta property="og:url" content="http://illithor.github.io/2019/12/31/Why-I-Rebuilt-this-Website/index.html">
 <meta property="og:site_name" content="Kinnara&#39;s Blog">
-<meta property="og:description" content="A similar website was deployed about 3 years ago when I was drafting the resume for my first internship. However, I haven&#39;t updated the website since then. I always think of rebuilding this website, b">
+<meta property="og:description" content="A similar website was deployed about 3 years ago when I was drafting the resume for my first internship. However, I haven’t updated the website since then. I always think of rebuilding this website, b">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-12-31T06:34:46.000Z">
 <meta property="article:modified_time" content="2020-08-09T17:50:38.374Z">
@@ -192,12 +192,12 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <p>A similar website was deployed about 3 years ago when I was drafting the resume for my first internship. However, I haven't updated the website since then.</p>
-<p>I always think of rebuilding this website, but I didn't get enough motivation. This has changed recently - the followings are the reasons why I decided to rebuild this website:</p>
-<ol type="1">
-<li>New year resolution: I should write more. The old "personal website" was not a real personal website as it only had one Hello World post.</li>
-<li>My parents' laptop was very slow and they rejected my offer to buy them a new one. So I gave them my laptop and bought myself a new one. Since the source files of this website were on my old laptop, I realized that I can't update this site anymore by the usual means, although I didn't update at all in the last 3 years... (Updating from different computers is <a href="https://xiaoyuliu.github.io/2018/03/28/how-to-sync-hexo-blog/#Sync-hexo-blogs-among-different-computers" target="_blank" rel="noopener">possible</a>, though). When I tried to download the compiled files from my GitHub, I realized how empty my site was. I see it as a chance to restart this blog on my new laptop.</li>
-<li>I recently changed my GitHub username from Illithor to illithor, since it's hard to tell whether the first letter is an I or an L. An warning email was sent to me later automatically, because GitHub thought my custom domain that points to the old GitHub Page would need to update the DNS records to point to the new page. This is not an issue (the domain part of the URL is not case-sensitive), but this email forced me to go to my website and, again, saw how empty it was.</li>
+    <p>A similar website was deployed about 3 years ago when I was drafting the resume for my first internship. However, I haven’t updated the website since then.</p>
+<p>I always think of rebuilding this website, but I didn’t get enough motivation. This has changed recently - the followings are the reasons why I decided to rebuild this website:</p>
+<ol>
+<li>New year resolution: I should write more. The old “personal website” was not a real personal website as it only had one Hello World post.</li>
+<li>My parents’ laptop was very slow and they rejected my offer to buy them a new one. So I gave them my laptop and bought myself a new one. Since the source files of this website were on my old laptop, I realized that I can’t update this site anymore by the usual means, although I didn’t update at all in the last 3 years… (Updating from different computers is <a href="https://xiaoyuliu.github.io/2018/03/28/how-to-sync-hexo-blog/#Sync-hexo-blogs-among-different-computers" target="_blank" rel="noopener">possible</a>, though). When I tried to download the compiled files from my GitHub, I realized how empty my site was. I see it as a chance to restart this blog on my new laptop.</li>
+<li>I recently changed my GitHub username from Illithor to illithor, since it’s hard to tell whether the first letter is an I or an L. An warning email was sent to me later automatically, because GitHub thought my custom domain that points to the old GitHub Page would need to update the DNS records to point to the new page. This is not an issue (the domain part of the URL is not case-sensitive), but this email forced me to go to my website and, again, saw how empty it was.</li>
 </ol>
 <p>The reasons above are enough for me to rebuild this website. So here we go. I rebuilt it from scratch with <code>hexo init</code> and I hope this time my motivation to update this website will last longer than before.</p>
 
@@ -285,7 +285,22 @@ classes that you can use:
     <!--kill ie6 -->
 <!--[if IE 6]>
   <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
-<![endif]--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<![endif]-->
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

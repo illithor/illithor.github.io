@@ -16,10 +16,12 @@
     
     
 
-    <meta property="og:type" content="website">
+    <meta name="description" content="A Spark in the Dark">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Archive">
 <meta property="og:url" content="http://illithor.github.io/archive/index.html">
 <meta property="og:site_name" content="Kinnara&#39;s Blog">
+<meta property="og:description" content="A Spark in the Dark">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-02T02:51:27.000Z">
 <meta property="article:modified_time" content="2020-01-02T04:03:46.913Z">
@@ -167,7 +169,6 @@ classes that you can use:
 
     <section id="post-content" class="article-content post">
         
-
     </section>
 
 
@@ -196,15 +197,15 @@ classes that you can use:
             
         
             
-                <span><a href="/tags/Recipes/" title="Recipes">Recipes<sup>1</sup></a></span>
-            
-        
-            
                 <span><a href="/tags/Data-Science/" title="Data Science">Data Science<sup>1</sup></a></span>
             
         
             
-                <span><a href="/tags/Music/" title="Music">Music<sup>1</sup></a></span>
+                <span><a href="/tags/Recipes/" title="Recipes">Recipes<sup>1</sup></a></span>
+            
+        
+            
+                <span><a href="/tags/Travel/" title="Travel">Travel<sup>1</sup></a></span>
             
         
             
@@ -212,7 +213,7 @@ classes that you can use:
             
         
             
-                <span><a href="/tags/Travel/" title="Travel">Travel<sup>1</sup></a></span>
+                <span><a href="/tags/Music/" title="Music">Music<sup>1</sup></a></span>
             
         
     </div>
@@ -250,7 +251,22 @@ classes that you can use:
     <!--kill ie6 -->
 <!--[if IE 6]>
   <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
-<![endif]--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<![endif]-->
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
